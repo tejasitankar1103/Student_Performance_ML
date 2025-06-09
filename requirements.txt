@@ -1,0 +1,6 @@
+pandas
+numpy
+seaborn
+-e .
+## this triggers setup.py to run whenver pip install is run
+# -e . is used to install the package in editable mode, which means changes to the source code will be reflected without needing to reinstall.

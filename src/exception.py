@@ -1,5 +1,5 @@
 import sys  # Importing the sys module to access system-specific functions and exceptions
-import logging # Importing the logging module to log messages and errors
+from src.logger import logging  # Importing the custom logger setup from logger.py
 
 ## This file contains custom exception classes and a function to handle error messages.
 
@@ -43,4 +43,14 @@ class CustomException(Exception):  # Inheriting from base Exception class
         # Whenever the CustomException is printed or converted to string,
         # it will return the full detailed message instead of just the error text
 
+
+# Example usage:
+if __name__ == "__main__":
+    try:
+        # Simulating an error for demonstration
+        1 / 0  # This will raise a ZeroDivisionError
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")
+        # Catching the exception and raising our custom exception with detailed message
+        raise CustomException(e, sys) from e  # 'from e' keeps the original traceback context
 

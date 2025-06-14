@@ -15,6 +15,13 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
 
+# This config class is used to store important settings or paths needed during the data transformation process.
+# Right now, it holds the file path where we will save the preprocessor object (a trained pipeline that handles
+# missing values, encoding, and scaling). At the beginning, this path is just stored as a value – nothing is saved yet.
+# But after we train the preprocessor using the training data, we save it to this path using this config.
+# Later, when we need to use the same preprocessor (e.g., during model prediction), we can load it back from this path.
+# This helps keep our code clean and organized, because instead of hardcoding file paths in multiple places,
+# we define them in one place (config class), which makes the code easier to manage, especially in bigger projects.
 
 @dataclass
 class DataTransformationConfig:
@@ -106,7 +113,7 @@ class DataTransformation:
             return (
                 train_arr,
                 test_arr, 
-                self.data_transformation_config.preprocessor_obj_file_path,
+                #self.data_transformation_config.preprocessor_obj_file_path,
             )
         except Exception as e:
             raise CustomException(e, sys) 
